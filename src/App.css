@@ -1,0 +1,11 @@
+/* This file is intentionally left empty. 
+  
+  We have moved all global styles and animations to src/index.css 
+  and we are using Tailwind CSS classes in src/App.jsx 
+  to achieve the "Dark Void" aesthetic.
+  
+  Keeping styles here would conflict with the black theme.
+*/
+#root{
+  -webkit-font-smoothing: antialiased;
+}

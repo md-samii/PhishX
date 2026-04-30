@@ -122,6 +122,6 @@ If you want to use the PhishX engine without the React frontend, you can send PO
 ---
 
 ## 👤 Author
-**Milin**
+**Mohammed Sami**
 *Pre-Final Year CSE Student*
 [GitHub Profile](https://github.com/YOUR_USERNAME)

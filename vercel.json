@@ -1,29 +1,27 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/app.py",
-      "use": "@vercel/python"
+  "services": {
+    "frontend": {
+      "root": ".",
+      "framework": "vite"
     },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+    "backend": {
+      "root": "backend"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/(analyze|rate|ratings|stats|health)",
-      "dest": "backend/app.py"
+      "source": "/api/(.*)?",
+      "destination": {
+        "type": "service",
+        "service": "backend"
+      }
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "frontend"
+      }
     }
   ]
 }

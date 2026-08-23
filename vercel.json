@@ -1,20 +1,29 @@
 {
+  "services": {
+    "frontend": {
+      "root": ".",
+      "framework": "vite"
+    },
+    "backend": {
+      "root": "backend",
+      "framework": "python",
+      "entrypoint": "app.py"
+    }
+  },
   "rewrites": [
     {
-      "source": "/analyze",
-      "destination": "/api/index.py"
+      "source": "/api/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "backend"
+      }
     },
     {
-      "source": "/rate",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/stats",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/health",
-      "destination": "/api/index.py"
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "frontend"
+      }
     }
   ]
 }

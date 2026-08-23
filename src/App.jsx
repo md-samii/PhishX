@@ -41,12 +41,13 @@ export default function App() {
     scannerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : 'https://phishing-website-backend-5sjv.onrender.com');
+
   const analyzeUrl = async (urlToAnalyze) => {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)); 
       
-      const response = await fetch('https://phishing-website-backend-5sjv.onrender.com/analyze', {
-      // const response = await fetch('http://localhost:5000/analyze', {  
+      const response = await fetch(`${API_BASE_URL}/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: urlToAnalyze }),
@@ -105,8 +106,7 @@ export default function App() {
 
   const submitSafetyRating = async (urlToRate, rating) => {
     try {
-      await fetch('https://phishing-website-backend-5sjv.onrender.com/rate', {
-      // await fetch('http://localhost:5000/rate', {
+      await fetch(`${API_BASE_URL}/rate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: urlToRate, user_rating: rating }),
@@ -519,7 +519,7 @@ function ScrollFeatures() {
 //           </a>
 
 //           <a
-//             href="https://github.com/MilinManu/PhishX"
+//             href="https://github.com/md-samii/PhishX"
 //             target="_blank"
 //           >
 //             <Github className="w-5 h-5 text-gray-500 hover:text-white transition-colors" />

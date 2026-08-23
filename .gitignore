@@ -1,1 +1,22 @@
-backend/malicious_phish.csv 
+# Dependencies
+node_modules
+backend/venv
+venv
+
+# Build outputs
+dist
+dist-ssr
+*.local
+
+# Logs & CSV datasets
+*.log
+backend/malicious_phish.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+.env.local

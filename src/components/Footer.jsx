@@ -27,8 +27,9 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://github.com/MilinManu/PhishX"
+            href="https://github.com/md-samii/PhishX"
             target="_blank"
+            rel="noreferrer"
           >
             <Github className="w-5 h-5 text-gray-500 hover:text-white transition" />
           </a>

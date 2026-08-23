@@ -1,127 +1,93 @@
-# 🛡️ PhishX - AI-Powered Phishing Website Detector
+# 🛡️ PhishX — AI-Powered Phishing Website Detector
+> **Academic Mini Project** | Computer Science & Engineering
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![React](https://img.shields.io/badge/Frontend-React-61DAFB)
-![Flask](https://img.shields.io/badge/Backend-Flask-green)
-![ML](https://img.shields.io/badge/AI-BERT%20%2B%20XGBoost-orange)
-
-## 📌 Project Overview
-**PhishX** is a next-generation Phishing Website Detector designed to identify malicious URLs with high precision. Unlike traditional systems that rely on static blacklists, PhishX utilizes a **Hybrid AI Architecture**.
-
-It combines **Deep Learning (BERT)** to understand the *semantic context* of a URL and **XGBoost** for high-speed, accurate classification. The system features a modern **React Frontend** for user interaction and a robust **Flask Backend** that serves the AI engine.
+PhishX is a web-based phishing website detector built to identify malicious URLs using machine learning and deep learning. Instead of relying only on traditional blacklists, PhishX uses a hybrid model (**BERT + XGBoost**) to detect zero-day phishing sites in real time.
 
 ---
 
-## 🚀 Key Features
-* **Hybrid Intelligence:** Combines **DistilBERT** (for natural language understanding of URLs) and **XGBoost** (for robust classification).
-* **Smart Unshortening:** Automatically resolves shortened links (e.g., `bit.ly`, `tinyurl`) to detect hidden threats.
-* **Real-time Analysis:** Optimized for low-latency inference.
-* **Whitelist System:** Instant verification for known safe domains (Google, Facebook) to save compute resources.
+## 🎯 Objectives
+- **Accurate Detection:** Detect deceptive and phishing URLs with high accuracy (**98.27%**).
+- **Hybrid AI:** Combine **DistilBERT** (for semantic URL analysis) and **XGBoost** (for fast classification).
+- **Link Unshortening:** Resolve shortened links (`bit.ly`, `tinyurl`) to inspect the final target domain.
+- **Whitelist Protection:** Fast-track known safe websites (Google, Amazon, etc.) to minimize latency.
 
 ---
 
-## 🧠 How PhishX Works
-The system follows a 3-stage pipeline to analyze every URL:
+## 🛠️ Tech Stack
 
-
-
-1.  **URL Resolution:** Checks if the URL is shortened and follows redirects to the final destination.
-2.  **Feature Extraction (BERT):** The URL is fed into a pre-trained **DistilBERT** model to generate a 768-dimensional embedding vector.
-3.  **Classification (XGBoost):** This vector is passed to the **XGBoost** classifier to predict `Safe` or `Phishing`.
+| Layer | Technologies Used |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Tailwind CSS, Lucide Icons, Framer Motion |
+| **Backend** | Python 3, Flask, Flask-CORS |
+| **Machine Learning** | XGBoost, DistilBERT (HuggingFace API), Scikit-Learn |
+| **Extension** | Manifest V3 Chrome Extension |
 
 ---
 
-## ⚙️ Installation & Setup
+## 🧠 System Architecture
 
-Follow these steps to set up PhishX locally.
-
-### Step 1: Clone the Repository
-```bash
-git clone [https://github.com/MilinManu/PhishX.git](https://github.com/MilinManu/PhishX.git)
-cd phishing-website-detector
+```
+[ User Input URL ]
+        │
+        ▼
+[ 1. Whitelist Check ] ──(If Safe)──► [ Return SAFE (Instant) ]
+        │
+     (If Not)
+        ▼
+[ 2. Unshorten URL ] ──► [ 3. Feature Extraction (BERT) ]
+                                      │
+                                      ▼
+                           [ 4. XGBoost Model ]
+                                      │
+                                      ▼
+                        [ 5. Risk Score & Result ]
 ```
 
-### Step 2: Backend Setup (Python)
-You need to set up the Python environment inside the `backend` folder.
+---
 
+## 🚀 Quick Setup & Execution
+
+### Prerequisites
+- **Node.js** (v18+)
+- **Python** (v3.8+)
+
+### Step 1: Backend Setup
 ```bash
-# 1. Navigate to the backend folder
 cd backend
-
-# 2. Create a virtual environment
 python -m venv venv
 
-# 3. Activate the environment
-# For Windows:
+# Windows:
 venv\Scripts\activate
-# For Mac/Linux:
-source venv/bin/activate
 
-# 4. Install Python dependencies
+# Install requirements:
 pip install -r requirements.txt
-```
-> **Note:** This installs large libraries like PyTorch and Transformers. Please ensure a stable internet connection.
 
-### Step 3: Frontend Setup (React)
-You need to install the Node modules in the **main directory** (root).
-
-```bash
-# 1. Open a NEW terminal (or go back to the root folder)
-cd ..
-
-# 2. Install dependencies
-npm install
-```
-
----
-
-## ▶️ Running PhishX
-This project requires running the Backend and Frontend simultaneously. Open **two separate terminal windows**.
-
-### Terminal 1: Start Backend API
-```bash
-cd backend
-# Ensure venv is activated (you should see (venv) in your terminal)
+# Start Backend API:
 python app.py
 ```
-*The Flask server will start at `http://127.0.0.1:5000`*
+> Backend runs at: `http://127.0.0.1:5000`
 
-> **Troubleshooting:** If the app crashes immediately, ensure the trained model file (`phishing_xgboost.model`) is present inside the `backend/` folder.
-
-### Terminal 2: Start Frontend UI
+### Step 2: Frontend Setup
 ```bash
-# Run this from the main project directory
+# Open a new terminal in the root folder
+npm install
 npm run dev
 ```
-*The React app should now be running (usually at `http://localhost:5173` or `http://localhost:3000`).*
+> Frontend runs at: `http://localhost:5173`
 
 ---
 
-## 🔌 API Usage
-If you want to use the PhishX engine without the React frontend, you can send POST requests directly.
+## 📊 Results & Performance
 
-**Endpoint:** `POST /analyze`
-
-**Request Body:**
-```json
-{
-    "url": "[http://secure-login-apple-id.com.update.xyz](http://secure-login-apple-id.com.update.xyz)"
-}
-```
-
-**Response:**
-```json
-{
-    "status": "Phishing",
-    "score": 98.45,
-    "url": "[http://secure-login-apple-id.com.update.xyz](http://secure-login-apple-id.com.update.xyz)",
-    "method": "BERT+XGBoost"
-}
-```
+- **Model Accuracy:** `98.27%`
+- **Average Response Time:** `< 1 second`
+- **Output:** Categorizes URLs into `SAFE` or `PHISHING` with a confidence risk score.
 
 ---
 
-## 👤 Author
-**Milin**
-*Pre-Final Year CSE Student*
-[GitHub Profile](https://github.com/YOUR_USERNAME)
+## 👤 Project Author
+
+- **Name:** MD Sami
+- **GitHub:** [md-samii](https://github.com/md-samii)
+- **Course:** B.Tech / BE - Computer Science & Engineering
+- **Project Type:** Mini Project

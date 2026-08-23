@@ -1,10 +1,12 @@
+import sys
+import os
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import os
 import requests
 import traceback
 import pickle
-import requests
 import numpy as np
 from urllib.parse import urlparse
 

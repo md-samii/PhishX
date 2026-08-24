@@ -101,9 +101,10 @@ KNOWN_PHISHING_PATTERNS = [
 print("⏳ Loading AI Models... Please wait.")
 try:
     # Load XGBoost model (trained with PhiUSIIL dataset)
-    with open('phishing_detector_phiusiil.pkl', 'rb') as f:
+    model_path = os.path.join(os.path.dirname(__file__), 'phishing_detector_phiusiil.pkl')
+    with open(model_path, 'rb') as f:
         xgb_model = pickle.load(f)
-    print("✅ XGBoost Model Loaded from phishing_detector_phiusiil.pkl")
+    print(f"✅ XGBoost Model Loaded from {model_path}")
 
     print(f"✅ BERT API connection ready")
 

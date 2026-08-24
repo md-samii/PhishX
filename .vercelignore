@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+backend/venv
+venv
+.venv
+
+# Build outputs
+dist
+dist-ssr
+*.local
+
+# Datasets & ZIP files
+*.csv
+*.zip
+*.log
+
+# Git & IDE
+.git
+.vscode
+.idea
+
+# Training scripts not needed for deployment
+backend/train_local.py
+backend/phishing_detector.py
+backend/malicious_phish.csv

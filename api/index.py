@@ -11,5 +11,5 @@ os.chdir(backend_dir)
 
 from app import app
 
-# Expose app for Vercel WSGI / Serverless handler
+# Expose app and handler for Vercel WSGI / Serverless runtime compatibility
 handler = app

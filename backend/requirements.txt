@@ -2,5 +2,4 @@ flask
 flask-cors
 xgboost
 numpy
-scikit-learn
 requests

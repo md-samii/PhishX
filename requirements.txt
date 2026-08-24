@@ -1,5 +1,5 @@
 flask
 flask-cors
-xgboost-cpu
-numpy
+xgboost-cpu==3.3.0
+numpy==1.26.4
 requests

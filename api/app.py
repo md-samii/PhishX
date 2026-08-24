@@ -353,6 +353,7 @@ def calculate_phishing_risk_score(url_features, url):
 
 # --- 4. API ROUTES ---
 
+@app.route('/api/analyze', methods=['POST'])
 @app.route('/analyze', methods=['POST'])
 def analyze():
     if not xgb_model:
@@ -491,6 +492,7 @@ def analyze():
             'details': 'Please check if the URL format is valid and try again.'
         }), 500
 
+@app.route('/api/batch-analyze', methods=['POST'])
 @app.route('/batch-analyze', methods=['POST'])
 def batch_analyze():
     if not xgb_model:
@@ -548,6 +550,7 @@ def batch_analyze():
     except Exception as e:
         return jsonify({'error': f'Batch analysis failed: {str(e)}'}), 500
 
+@app.route('/api/health', methods=['GET'])
 @app.route('/health', methods=['GET'])
 def health():
     models_loaded = xgb_model is not None
@@ -559,6 +562,8 @@ def health():
         'bert_source': 'HuggingFace API'
     })
 
+@app.route('/api', methods=['GET'])
+@app.route('/api/', methods=['GET'])
 @app.route('/', methods=['GET'])
 def home():
     return jsonify({

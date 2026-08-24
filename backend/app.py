@@ -451,6 +451,7 @@ def calculate_phishing_risk_score(url_features, url):
 
 # --- 4. API ROUTES ---
 
+@app.route('/api/analyze', methods=['POST'])
 @app.route('/analyze', methods=['POST'])
 def analyze():
     """Main endpoint for URL analysis"""
@@ -660,6 +661,7 @@ def analyze():
             'details': 'Please check if the URL format is valid and try again.'
         }), 500
 
+@app.route('/api/batch-analyze', methods=['POST'])
 @app.route('/batch-analyze', methods=['POST'])
 def batch_analyze():
     """Endpoint for analyzing multiple URLs at once"""
@@ -721,6 +723,7 @@ def batch_analyze():
         print(traceback.format_exc())
         return jsonify({'error': f'Batch analysis failed: {str(e)}'}), 500
 
+@app.route('/api/health', methods=['GET'])
 @app.route('/health', methods=['GET'])
 def health():
     """Health check endpoint"""
@@ -735,6 +738,8 @@ def health():
         'bert_source': 'HuggingFace API'
     })
 
+@app.route('/api', methods=['GET'])
+@app.route('/api/', methods=['GET'])
 @app.route('/', methods=['GET'])
 def home():
     """API documentation endpoint"""

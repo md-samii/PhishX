@@ -1,19 +1,8 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/analyze",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/batch-analyze",
-      "destination": "/api/index.py"
-    },
-    {
-      "source": "/health",
+      "source": "/api/:path*",
       "destination": "/api/index.py"
     }
   ]

@@ -1,5 +1,5 @@
 flask
 flask-cors
-xgboost
+xgboost-cpu
 numpy
 requests
